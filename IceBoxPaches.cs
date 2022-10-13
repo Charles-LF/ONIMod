@@ -14,7 +14,7 @@ namespace ONIMod.IceBox
         public override void OnLoad(Harmony harmony)
         {
             base.OnLoad(harmony);
-            PUtil.InitLibrary();
+            PUtil.InitLibrary(false);
             new PLocalization().Register(null);
             new PBuildingManager().Register(IceBoxConfig.CreateBuilding());
             new POptions().RegisterOptions(this, typeof(Settings));
