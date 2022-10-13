@@ -38,7 +38,7 @@ namespace ONIMod.IceBox
                 OverheatTemperature = null,
                 Placement = BuildLocationRule.OnFloor,
                 RotateMode = PermittedRotations.FlipH,
-                SubCategory = "Food",
+                SubCategory = "storage",
                 Tech = "FineDining",
                 ViewMode = OverlayModes.Power.ID,
                 LogicIO =
