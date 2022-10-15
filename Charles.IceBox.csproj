@@ -87,6 +87,7 @@
     <Compile Include="IceBoxPaches.cs" />
     <Compile Include="IceBoxSettings.cs" />
     <Compile Include="IceBoxStrings.cs" />
+    <Compile Include="IceboxUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

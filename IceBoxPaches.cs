@@ -1,8 +1,5 @@
 ﻿using HarmonyLib;
-using PeterHan.PLib.Buildings;
 using PeterHan.PLib.Core;
-using PeterHan.PLib.Database;
-using System.Collections.Generic;
 using UnityEngine;
 using KMod;
 using PeterHan.PLib.Options;
@@ -15,10 +12,27 @@ namespace ONIMod.IceBox
         {
             base.OnLoad(harmony);
             PUtil.InitLibrary(false);
-            new PLocalization().Register(null);
-            new PBuildingManager().Register(IceBoxConfig.CreateBuilding());
             new POptions().RegisterOptions(this, typeof(Settings));
             Settings.Init(POptions.ReadSettings<Settings>());
+        }
+
+        [HarmonyPatch("Initialize")]
+        [HarmonyPatch(typeof(Db))]
+        public static class Db_Initialize_Patch
+        {
+            public static void Postfix()
+            {
+                Utils.AddBuildingToTech("FinerDining", IceBoxConfig.ID);
+                Utils.AddPlan("Food", "storage", IceBoxConfig.ID, "Refrigerator");
+            }
+        }
+        [HarmonyPatch(typeof(Localization), "Initialize")]
+        public class Localization_Initialize_Patch
+        {
+            public static void Postfix()
+            {
+                Utils.Translate(typeof(STRINGS));
+            }
         }
 
         [HarmonyPatch(typeof(RefrigeratorConfig))]
@@ -37,7 +51,7 @@ namespace ONIMod.IceBox
         {
             private static void Postfix(GameObject go)
             {
-                EntityTemplateExtensions.AddOrGet<Storage>(go).capacityKg = Settings.GetSettings().RefrigeratorStorage;
+                go.AddOrGet<Storage>().capacityKg = Settings.GetSettings().RefrigeratorStorage;
             }
         }
         [HarmonyPatch(typeof(RefrigeratorController.Def), (MethodType)3)]

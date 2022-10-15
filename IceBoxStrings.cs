@@ -1,21 +1,16 @@
 ﻿using STRINGS;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ONIMod.IceBox
 {
-    public class IceBoxStrings
+    public class STRINGS
     {
-        public static class BUILDING
+        public static class BUILDINGS
         {
             public static class PREFABS
             {
                 public class ICEBOX
                 {
-                    public static LocString NAME = UI.FormatAsLink("IceBox", "ICEBOX");
+                    public static LocString NAME = UI.FormatAsLink("IceBox", "IceBox");
 
                     public static LocString DESC = "Food spoilage can be slowed by ambient conditions as well as by refrigerators.";
 
